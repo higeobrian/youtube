@@ -3,6 +3,7 @@ var bp = require ('body-parser')
 var app = express()
 var cors = require('cors')
 var port = 3000
+var playlist = require('./routes/playlists')
 
 app.use (cors())
 
@@ -13,18 +14,7 @@ app.use(bp.urlencoded({
   extended : true
 }))
 
-// let auth = require('./authentication/auth')
-// app.use(auth.session)
-// app.use(auth.router)
-
-//when using auth add this
-//routs
-
-
-var playlist = require('./routes/playlist')
-// app.use(auth.isLoggedIn)
 app.use(playlist.router)
-
 
 //catch all
 app.get('*', (req, res, next) => {

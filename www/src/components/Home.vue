@@ -24,13 +24,15 @@
         <h3>Results</h3>
         <ul>
           <li v-for="result in results">
-          <h5>Title: {{results.title}</h5>
+          <h5>Title: {{results.title}}</h5>
           </li>
 
           <li v-for="result in results">
           <h6>Album:</h6>
           <br>
-          <img :src={{song.albumArt}>
+          <div class="image">
+              <img :src="search.artworkUrl100" :alt="search.collectionName">
+            </div>
           </br>
           </li>
 
@@ -41,7 +43,7 @@
           <h6>Collection: </h6>{{results.collection}}</li>
 
           <li v-for="result in results">
-          <h6>Price: </h6>{{results.price}</li>
+          <h6>Price: </h6>{{results.price}}</li>
 
           <li v-for="result in results">
           <h6>Preview:</h6>
@@ -71,7 +73,9 @@
           <li v-for="myPlaylist in myPlaylists">
           <h6>Album: {{myPlaylist.collectionName}}</h6>
           <br>
-          <img :src={{myPlaylist.albumArt}>
+          <div class="image">
+              <img :src="result.artworkUrl100" :alt="result.collectionName">
+            </div>
           </br>
           </li>
 
@@ -82,7 +86,7 @@
           <h6 class="collection">Collection: </h6>{{myPlaylist.collection}}</li>
 
           <li v-for="myPlaylist in myPlaylists">
-          <h6 class="price">Price: </h6>{{myPlaylist.price}</li>
+          <h6 class="price">Price: </h6>{{myPlaylist.price}}</li>
 
           <li v-for="myPlaylist in myPlaylists">
           <h6 class="preview">Preview: {{myPlaylist.preview}}</h6>
@@ -92,9 +96,6 @@
             </br>
           </audio>
           </li>
-
-          <div class="image">
-              <img :src="search.artworkUrl100" :alt="search.collectionName"></div>
 
           <!-- </router-link> -->
         </ul>

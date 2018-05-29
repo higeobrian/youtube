@@ -1,28 +1,29 @@
 let mongoose = require('mongoose')
 let Schema = mongoose.Schema
-let ObjectId = Schema.Types.ObjectId
-let schemaName = 'Playlist'
+let schemaName = 'playlist'
 
-let songSchema = new Schema({
+let song = new Schema({
    
-        title: { type: String, required: true },
-        albumArt: { type: String, required: true },
-        artist: { type: String, required: true },
-        collection: { type: String, required: true },
-        price: { type: Number, required: true },
-        preview: { type: String, required: true },
-    
+    title: { type: String, required: true },
+    albumArt: { type: String, required: true },
+    artist: { type: String, required: true },
+    album: { type: String, required: true },
+    price: { type: Number, required: true },
+    preview: { type: String, required: true },
+
 })
 
-let schema = new Schema({
-    title: {String},
-    songs: [songSchema]
+let playlist = new Schema({
+    title: {type: String, required: true},
+    songs: [song]
+
 })
 
-
-schema.pre('save', function(next){
+playlist.pre('save', function(next){ //event listener (pre) mark it as changed.. Mongoose always assume something changed, so it replaces existing stuff on db.
     this.markModified('songs')
     next()
 })
+//can't use a lambda expression 'save', (next) =>.... 
 
-module.exports = mongoose.model(schemaName, schema)
+
+module.exports = mongoose.model(schemaName, playlist)
